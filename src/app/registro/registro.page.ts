@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 import { Route, Router } from '@angular/router';
+import { ApiService } from '../provider/post-service.service';
+import { NavController } from '@ionic/angular';
+import { Detalle } from '../models/Ciudad';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -13,16 +17,43 @@ export class RegistroPage implements OnInit {
     apellido: string;
     email: string;
     password: string;
+    ciudad: string;
+    comuna: string;
+    logeado: boolean;
   };
+  regions: any[] = [];
+  communes: any[] = [];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    public navCtrl: NavController,
+    public ApiServices: ApiService
+  ) {
     this.usuario = {
       nombre: '',
       apellido: '',
       email: '',
       password: '',
+      ciudad: '',
+      comuna: '',
+      logeado: false,
     };
   }
+  ionViewDidEnter() {
+    this.loadRegions();
+  }
+  loadRegions() {
+    this.ApiServices.getRegions().subscribe((response) => {
+      this.regions = response.data;
+    });
+  }
+
+  loadCommunes(regionId: number) {
+    this.ApiServices.getCommunes(regionId).subscribe((response) => {
+      this.communes = response.data;
+    });
+  }
+
   async registro() {
     await Preferences.set({
       key: this.usuario.email,

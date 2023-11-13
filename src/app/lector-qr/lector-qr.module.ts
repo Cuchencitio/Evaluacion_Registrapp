@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LectorQRPageRoutingModule } from './lector-qr-routing.module';
+import { LectorQrPageRoutingModule } from './lector-qr-routing.module';
 
-import { LectorQRPage } from './lector-qr.page';
-
+import { LectorQrPage } from './lector-qr.page';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LectorQRPageRoutingModule
+    LectorQrPageRoutingModule,
+    ZXingScannerModule,
   ],
-  declarations: [LectorQRPage]
+  declarations: [LectorQrPage],
 })
-export class LectorQRPageModule {}
+export class LectorQrPageModule {}

@@ -1,13 +1,44 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>LectorQR</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">LectorQR</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row id="row" class="ion-justify-content-center">
+    <ion-col size="9" class="ion-align-items-center">
+      <ion-row id="row" class="ion-justify-content-center">
+        <h1 class="ion-text-center">
+          Escanea el codigo QR para obtener los datos de la clase
+        </h1>
+      </ion-row>
+      <ion-row id="row" class="ion-justify-content-center">
+        <zxing-scanner
+          id="scanner"
+          name="scanner"
+          #scannerEnabled
+          [formats]="allowedFormats"
+          (scanSuccess)="readFunc($event, 'success')"
+        ></zxing-scanner>
+      </ion-row>
+      <ion-row id="row" class="ion-justify-content-center">
+        <h2 class="ion-text-center">
+          Seras redireccionado automaticamente a los datos de la asistencia
+        </h2>
+      </ion-row>
+      <ion-row id="row1" class="ion-justify-content-center">
+        <ion-button
+          routerLink="/login"
+          color="danger"
+          fill="solid"
+          expand="block"
+          shape="round"
+          >Salir</ion-button
+        >
+      </ion-row>
+    </ion-col>
+  </ion-row>
 </ion-content>

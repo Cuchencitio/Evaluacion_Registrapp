@@ -1,42 +1,57 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ProteccionRutasGuard } from './proteccion-rutas.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () =>
+      import('./registro/registro.module').then((m) => m.RegistroPageModule),
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    loadChildren: () =>
+      import('./forgot-password/forgot-password.module').then(
+        (m) => m.ForgotPasswordPageModule
+      ),
   },
   {
     path: 'lector-qr',
-    loadChildren: () => import('./lector-qr/lector-qr.module').then( m => m.LectorQRPageModule)
+    loadChildren: () =>
+      import('./lector-qr/lector-qr.module').then((m) => m.LectorQrPageModule),
+    canActivate: [ProteccionRutasGuard],
   },
   {
     path: 'error404',
-    loadChildren: () => import('./error404/error404.module').then( m => m.Error404PageModule)
+    loadChildren: () =>
+      import('./error404/error404.module').then((m) => m.Error404PageModule),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./error404/error404.module').then((m) => m.Error404PageModule),
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

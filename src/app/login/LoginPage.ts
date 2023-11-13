@@ -12,25 +12,38 @@ export class LoginPage implements OnInit {
     email: string;
     password: string;
   };
+  public logedUser: {
+    email: string;
+    logeado: boolean;
+  };
 
   constructor(private router: Router) {
     this.loginUser = {
       email: '',
       password: '',
     };
+    this.logedUser = {
+      email: '',
+      logeado: false,
+    };
   }
+
   async login() {
     const usuario = await Preferences.get({ key: this.loginUser.email });
     if (!usuario.value) {
       alert('Usuario no existe');
     } else {
       const pass = JSON.parse(usuario.value);
-      console.log(pass);
       if (this.loginUser.password === pass.password) {
-        console.log('Logeado');
+        this.logedUser.logeado = true;
+        this.logedUser.email = this.loginUser.email;
+        await Preferences.set({
+          key: 'logedUser',
+          value: JSON.stringify(this.logedUser),
+        });
         this.router.navigateByUrl('lector-qr');
       } else {
-        console.log('Password incorrecta');
+        this.logedUser.logeado = false;
       }
     }
   }
