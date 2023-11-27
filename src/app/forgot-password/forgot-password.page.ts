@@ -26,6 +26,10 @@ export class ForgotPasswordPage implements OnInit {
     } else {
       const cambioDePassword = JSON.parse(usuario.value);
       cambioDePassword.password = this.cambioPassword.nuevapassword;
+      await Preferences.set({
+        key: cambioDePassword.email,
+        value: JSON.stringify(cambioDePassword),
+      });
       alert('Password cambiada con exito');
       this.router.navigateByUrl('login');
     }

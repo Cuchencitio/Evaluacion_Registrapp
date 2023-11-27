@@ -24,11 +24,14 @@
       </ion-item>
       <ion-item>
         <ion-label>Password:</ion-label>
-        <ion-input [(ngModel)]="usuario.password" type="text"></ion-input>
+        <ion-input [(ngModel)]="usuario.password" type="password"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Región</ion-label>
-        <ion-select>
+        <ion-select
+          [(ngModel)]="usuario.ciudad"
+          (ionChange)="loadCommunes(usuario.ciudad)"
+        >
           <ion-select-option *ngFor="let region of regions" [value]="region.id"
             >{{ region.nombre }}</ion-select-option
           >
@@ -37,10 +40,10 @@
 
       <ion-item>
         <ion-label position="floating">Comuna</ion-label>
-        <ion-select>
+        <ion-select [(ngModel)]="usuario.comuna">
           <ion-select-option
             *ngFor="let commune of communes"
-            [value]="commune.id"
+            [value]="commune.nombre "
             >{{ commune.nombre }}</ion-select-option
           >
         </ion-select>

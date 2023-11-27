@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
           key: 'logedUser',
           value: JSON.stringify(this.logedUser),
         });
-        this.router.navigateByUrl('lector-qr');
+        this.router.navigateByUrl('scanner');
       } else {
         this.logedUser.logeado = false;
       }

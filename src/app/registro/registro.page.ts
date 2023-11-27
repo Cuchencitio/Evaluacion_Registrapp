@@ -17,8 +17,8 @@ export class RegistroPage implements OnInit {
     apellido: string;
     email: string;
     password: string;
-    ciudad: string;
-    comuna: string;
+    ciudad: number;
+    comuna: number;
     logeado: boolean;
   };
   regions: any[] = [];
@@ -34,8 +34,8 @@ export class RegistroPage implements OnInit {
       apellido: '',
       email: '',
       password: '',
-      ciudad: '',
-      comuna: '',
+      ciudad: 0,
+      comuna: 0,
       logeado: false,
     };
   }

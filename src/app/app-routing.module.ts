@@ -31,9 +31,9 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'lector-qr',
+    path: 'scanner',
     loadChildren: () =>
-      import('./lector-qr/lector-qr.module').then((m) => m.LectorQrPageModule),
+      import('./lector-qr/scanner.module').then((m) => m.ScannerPageModule),
     canActivate: [ProteccionRutasGuard],
   },
   {
