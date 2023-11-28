@@ -31,6 +31,7 @@
     "@capacitor/preferences": "^5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
+    "@ionic/core": "^7.5.6",
     "@zxing/ngx-scanner": "^16.1.0",
     "dexie": "^3.2.4",
     "ionicons": "^7.0.0",
